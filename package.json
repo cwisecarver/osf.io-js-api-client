@@ -1,0 +1,44 @@
+{
+  "name": "osf.io-api-client.js",
+  "version": "0.0.1",
+  "description": "JS API Client for OSF.IO",
+  "main": "base.es6.js",
+  "author": "",
+  "license": "Apache-2.0",
+  "eslintConfig": {
+    "extends": "eslint:recommended",
+    "parser": "babel-eslint",
+    "env": {
+      "browser": true,
+      "node": true,
+      "es6": true
+    }
+  },
+  "dependencies": {
+    "isomorphic-fetch": "latest",
+    "raven-js": "latest",
+    "urijs": "latest"
+  },
+  "devDependencies": {
+    "lodash": "latest",
+    "babel": "latest",
+    "babel-eslint": "latest",
+    "babelify": "latest",
+    "browserify": "latest",
+    "chai": "latest",
+    "eslint": "latest",
+    "jsdom": "latest",
+    "mocha": "latest",
+    "mocha-jsdom": "latest",
+    "sinon": "latest",
+    "uglifyify": "latest",
+    "watchify": "latest"
+  },
+  "scripts": {
+    "lint": "eslint *.es6.js || true",
+    "test": "node_modules/mocha/bin/mocha --compilers js:babel/register || true",
+    "build-dist": "npm run lint && browserify client.es6.js -t babelify -g uglifyify -c --s osfClient -o dist/osfclient.min.js || true",
+    "build": "browserify client.es6.js -t babelify --debug -o osfclient.min.js || true",
+    "watch": "watchify client.es6.js --debug -t babelify --debug -o osfclient.min.js -v -d || true"
+  }
+}
