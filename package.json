@@ -36,7 +36,7 @@
   },
   "scripts": {
     "lint": "eslint *.es6.js || true",
-    "test": "node_modules/mocha/bin/mocha --compilers js:babel/register || true",
+    "test": "node_modules/mocha/bin/mocha --compilers js:babel-core/register || true",
     "build-dist": "npm run lint && browserify client.es6.js -t babelify -g uglifyify -c --s osfClient -o dist/osfclient.min.js || true",
     "build": "browserify client.es6.js -t babelify --debug -o osfclient.min.js || true",
     "watch": "watchify client.es6.js --debug -t babelify --debug -o osfclient.min.js -v -d || true"
