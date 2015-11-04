@@ -10,6 +10,7 @@ class BaseModel {
       'type': null,
       'attributes': null
     };
+    this.OSFClient = OSFClient;
 
     if (!('attributes' in params)) {
       params = {attributes: params};
@@ -42,7 +43,7 @@ class BaseModel {
       'registrations': [Node, ['create', 'get', 'update', 'delete']],
       'forked_from': [Node, ['create', 'get', 'update', 'delete']]
     };
-    this.magicRelationships[relationship] = new OSFClient(`${uri.protocol()}://${uri.authority()}`).clientFactory(
+    this.magicRelationships[relationship] = new this.OSFClient(`${uri.protocol()}://${uri.authority()}`).clientFactory(
       pathSegment,
       modelLookup[relationship][0],
       modelLookup[relationship][1]
