@@ -1,9 +1,9 @@
 {
-  "name": "osf.io-api-client.js",
+  "name": "osf-api-client",
   "version": "0.0.1",
   "description": "JS API Client for OSF.IO",
   "main": "base.es6.js",
-  "author": "",
+  "author": "Chris Wisecarver",
   "license": "Apache-2.0",
   "eslintConfig": {
     "extends": "eslint:recommended",
