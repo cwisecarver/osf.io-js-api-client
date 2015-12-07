@@ -2,7 +2,6 @@
   "name": "osf-api-client",
   "version": "0.0.1",
   "description": "JS API Client for OSF.IO",
-  "main": "base.es6.js",
   "author": "Chris Wisecarver",
   "license": "Apache-2.0",
   "eslintConfig": {
@@ -14,14 +13,17 @@
       "es6": true
     }
   },
+  "browser": "dist/osfclient.min.js",
+  "main": "dist/osfclient.node.min.js",
   "dependencies": {
-    "isomorphic-fetch": "^2.2.0",
-    "raven-js": "^1.2.0",
+    "raven-js": "^2.0.0-rc1",
+    "superagent-es6": "1.0.0",
+    "underscore": "^1.8.3",
     "urijs": "^1.16.1"
   },
   "devDependencies": {
-    "babel-eslint": "^4.1.4",
-    "babel-preset-es2015": "^6.0.15",
+    "babel-eslint": "^5.0.0-beta4",
+    "babel-preset-es2015": "^6.1.18",
     "babelify": "^7.2.0",
     "browserify": "^12.0.1",
     "chai": "^3.4.0",
@@ -39,7 +41,10 @@
     "test": "node_modules/mocha/bin/mocha --compilers js:babel-core/register || true",
     "build-min": "browserify client.es6.js -t [ babelify --presets [ es2015 ] ] -g uglifyify -c --standalone OSFClient -o dist/osfclient.min.js || true",
     "build": "browserify client.es6.js -t [ babelify --presets [ es2015 ] ] --debug --standalone OSFClient -o dist/osfclient.js || true",
-    "build-dist": "npm run lint && npm run build && npm run build-min || true",
-    "watch": "watchify client.es6.js --debug -t [ babelify --presets [ es2015 ] ] --debug --standalone OSFClient -o dist/osfclient.js -v || true"
+    "build-node": "browserify client.es6.js --node --fast -t [ babelify --presets [ es2015 ] ] --debug -o dist/osfclient.node.js || true",
+    "build-node-min": "browserify client.es6.js --node -t [ babelify --presets [ es2015 ] ] -g uglifyify -c -o dist/osfclient.node.min.js || true",
+    "build-dist": "npm run lint && npm run build && npm run build-min && npm run build-node && npm run build-node-min || true",
+    "watch": "watchify client.es6.js --debug -t [ babelify --presets [ es2015 ] ] --debug --standalone OSFClient -o dist/osfclient.js -v || true",
+    "watch-node": "watchify client.es6.js --node --bare --debug -t [ babelify --presets [ es2015 ] ] --debug --standalone OSFClient -o dist/osfclient.js -v || true"
   }
 }
